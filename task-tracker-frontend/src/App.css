@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+.TaskForm {
+  margin-bottom: 20px;
+}
+
+.TaskList {
+  margin-top: 20px;
+}
+
+.Task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.Task button {
+  margin-left: 10px;
+}
