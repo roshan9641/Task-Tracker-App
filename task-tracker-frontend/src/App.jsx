@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, AppBar, Toolbar, Typography, Grid } from '@mui/material';
 import TaskForm from './functional-component/TaskForm';
 import TaskList from './functional-component/TaskList';
-import TaskTrackerApp from './functional-component/TaskTrackerApp';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -13,7 +12,7 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/tasks');
+      const response = await fetch('http://localhost:5000/api/tasks/');
       const data = await response.json();
       setTasks(data);
     } catch (error) {
@@ -23,7 +22,7 @@ function App() {
 
   const addTask = async (task) => {
     try {
-      const response = await fetch('http://localhost:5000/api/tasks', {
+      const response = await fetch('http://localhost:5000/api/tasks/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,20 +36,18 @@ function App() {
     }
   };
 
-  const deleteTask = async (taskI) => {
+  const deleteTask = async (taskId) => {
     try {
-      await fetch(`http://localhost:5000/api/tasks/${taskI}`, {
+      await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
         method: 'DELETE',
-      
       });
-      setTasks(tasks.filter((task) => task._id !== taskI)); 
+      setTasks(tasks.filter((task) => task._id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
     }
   };
 
   return (
-    <> 
     <Container>
       <AppBar position="static">
         <Toolbar>
@@ -68,8 +65,6 @@ function App() {
         </Grid>
       </Grid>
     </Container>
-  
-    </>
   );
 }
 
